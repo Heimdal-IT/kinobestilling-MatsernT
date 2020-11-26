@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8"/> 
+        <title>Mats' kino</title>
+        <link rel="stylesheet" type="text/css" href="kino.css"/>
+    </head>
+    
+    
+    <body>
+        <h1>Mats' Kino</h1>
+        
+
+            <h2>Filmer</h2>
+            <input type="radio" id="rdBorning" name="film" value="Børning" class="film" data-pris="100">
+                <label for="rdBorning">Børning 3</label>
+            <input type="radio" id="rdMuppets" name="film" value="Muppets" class="film" data-pris="110">
+                <label for="rdMuppets">Muppets</label>
+            <input type="radio" id="rdThor" name="film" value="Thor" class="film" data-pris="120">
+                <label for="rdThor">Thor</label>
+                <br>
+            <h2>Snacks  </h2>
+            <input type="checkbox" id="snacks1" name="tilbehor" value="popcorn" class="tilbehor" data-pris="50">
+                <label for="snacks1">Popcorn</label>
+            <input type="checkbox" id="snacks2" name="tilbehor" value="brus" class="tilbehor" data-pris="25">
+                <label for="snacks2">Brus/Mineralvann</label>
+            <input type="checkbox" id="snacks3" name="tilbehor" value="godtepose" class="tilbehor" data-pris="60">
+                <label for="snacks3">Godtepose</label>
+            
+            <br><br>
+            
+            <input type="button" id="btnBestill" value="Bestill">
+            <div id="bestilling"></div>
+            
+            <div id="kvittering"></div>
+        
+                
+    </body>
+    
+    <script>
+        let bestillKnapp = document.getElementById("btnBestill");
+        let bestilling = document.getElementById("bestilling");
+        const kvittering = document.getElementById("kvittering");
+        
+        function getFilm(){
+            let borning = document.getElementById("rdBorning");
+            let muppets = document.getElementById("rdMuppets");
+            let thor = document.getElementById("rdThor");
+            
+            if(borning.checked){
+                return {film : borning.value, pris : borning.getAttribute("data-pris")};
+            }else if(muppets.checked){
+                return {film : muppets.value, pris : muppets.getAttribute("data-pris")};
+            }else if(thor.checked){
+                return {film : thor.value, pris : thor.getAttribute("data-pris")};
+            }else{
+                alert("Du må velge en film");
+            }
+        };
+        
+        function getTilbehor(){
+            let tilbehor = document.getElementsByClassName("tilbehor");
+            let valgtTilbehor = [];
+            
+            for(let i = 0; i < tilbehor.lenght; i++){
+                if(tilbehor[i].checked){
+                    valgtTilbehor.push({tilbehor : tilbehor[i].value, pris : tilbehor[i].getAttribute("data-pris")});                
+                }
+            }
+            return valgtTilbehor;
+        } 
+        
+       
+        
+        function bestill(){
+            let film = getFilm();
+            let tilbehor = getTilbehor();
+            let tilbehortxt = "";
+            let totalpris = +film.pris;
+            
+            
+            for (let i = 0; i < tilbehor.length; i++){
+                tilbehortxt += +tilbehor[i].tilbehor + " " + tilbehor[i].pris + "kr" + ", ";
+                totalpris += +tilbehor[i].pris;
+            }
+            
+        bestilling.innerHTML = "Du har valgt å se filmen " + film.film + ", og valgt å se med tilbehøret " + tilbehortxt + " som blir totalt " + totalpris + " kr.";
+            
+        return totalpris;
+                  
+        }
+        
+        function kvitteringen(){
+            let film = getFilm();
+            let tilbehor = getTilbehor();
+            let totalpris = bestill();
+            
+            kvittering.innerHTML = "<h1 class = 'bestil'>Bestilt</h1>" + film.film + " " + film.pris + "kr<br>";
+            
+            for(let i = 0; i < tilbehor.length; i++){
+                kvittering.innerHTML += tilbehor[i].tilbehor + " " + tilbehor[i].pris + "kr<br>";
+            }
+                kvittering.innerHTML += "Totalpris = " + totalpris + " " + "kr";
+                kvittering.style.opacity = 1;
+        }
+        
+    
+        
+        
+        
+        
+        bestillKnapp.addEventListener("click", bestill);
+        document.querySelectorAll("input").forEach(function(e){e.addEventListener("click", bestill)});
+        
+    
+    
+    </script>
+    
+</html>
