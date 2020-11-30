@@ -1,0 +1,112 @@
+    body{
+    color: white;
+    min-height: 100vh;
+    background-image: radial-gradient(red,black);
+    background-size: cover;
+
+}
+
+#kvittering{
+    margin: 100px 0;
+    max-width: 150px;
+    border-style: dashed;
+    border-width: 0px;
+    border-color: ;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    padding: 10px;
+    color: white;
+    
+}
+
+#bestilling{
+    width: 300px;
+    text-align: center;
+    color: white;
+    padding: 7px;
+    margin-top: 100px ;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    
+}
+
+#filmBoks{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.bilder{
+    display: inline-block;
+    position: relative;
+    min-width: 150px;
+    height: 200px;
+    background-size: cover;
+}
+
+.bilder label{
+    position: absolute;
+    bottom: -1em;
+    left: 20px;
+    color: white;
+}
+
+#picBorning{
+    background-image: url("borning.jpg");
+}
+
+#picMuppets{
+    background-image: url("muppets.jpg");
+}
+
+#picThor{
+    background-image: url("thor.jpg");
+}
+
+
+#filmTtl{
+    text-align: center;
+    color: white;
+}
+
+.film{
+    color: white;
+    padding: 50px;
+    position: absolute;
+    bottom: -1em;
+    left: 0;
+    color: black;
+}
+
+h1{
+    text-align: center;
+    color: white;
+}
+
+#snacksBoks{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    margin: 80px 0;
+}
+
+#snacksTtl{
+    color: white;
+    text-align: center;
+    margin-top: 80px;
+    margin-bottom: 40px;
+    
+}
+
+#btnBestill{
+    background-color: orange;
+    width: 70px;
+    height: 50px;
+    position: absolute;
+    left: 50%;
+    border-radius: 5px;
+    transform: translate(-50%);
+    margin-top: 180px;
+}

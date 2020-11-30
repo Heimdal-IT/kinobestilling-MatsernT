@@ -12,22 +12,31 @@
         <h1>Mats' Kino</h1>
         
 
-            <h2>Filmer</h2>
+            <h2 id="filmTtl">Filmer</h2>
+        <div id="filmBoks">
+            <div class="bilder" id="picBorning">
             <input type="radio" id="rdBorning" name="film" value="Børning" class="film" data-pris="100">
                 <label for="rdBorning">Børning 3</label>
+            </div>
+            <div class="bilder" id="picMuppets">
             <input type="radio" id="rdMuppets" name="film" value="Muppets" class="film" data-pris="110">
                 <label for="rdMuppets">Muppets</label>
+            </div>
+            <div class="bilder" id="picThor">
             <input type="radio" id="rdThor" name="film" value="Thor" class="film" data-pris="120">
                 <label for="rdThor">Thor</label>
+            </div>
+        </div>
                 <br>
-            <h2>Snacks  </h2>
+            <h2 id="snacksTtl">Snacks</h2>
+        <div id="snacksBoks">
             <input type="checkbox" id="snacks1" name="tilbehor" value="popcorn" class="tilbehor" data-pris="50">
                 <label for="snacks1">Popcorn</label>
             <input type="checkbox" id="snacks2" name="tilbehor" value="brus" class="tilbehor" data-pris="25">
                 <label for="snacks2">Brus/Mineralvann</label>
             <input type="checkbox" id="snacks3" name="tilbehor" value="godtepose" class="tilbehor" data-pris="60">
                 <label for="snacks3">Godtepose</label>
-            
+        </div>
             <br><br>
             
             <input type="button" id="btnBestill" value="Bestill">
@@ -41,7 +50,7 @@
     <script>
         let bestillKnapp = document.getElementById("btnBestill");
         let bestilling = document.getElementById("bestilling");
-        const kvittering = document.getElementById("kvittering");
+        let kvittering = document.getElementById("kvittering");
         
         function getFilm(){
             let borning = document.getElementById("rdBorning");
@@ -63,9 +72,9 @@
             let tilbehor = document.getElementsByClassName("tilbehor");
             let valgtTilbehor = [];
             
-            for(let i = 0; i < tilbehor.lenght; i++){
+            for(let i = 0; i < tilbehor.length; i++){
                 if(tilbehor[i].checked){
-                    valgtTilbehor.push({tilbehor : tilbehor[i].value, pris : tilbehor[i].getAttribute("data-pris")});                
+                    valgtTilbehor.push({tilbehor : tilbehor[i].value, pris : tilbehor[i].getAttribute("data-pris")});    
                 }
             }
             return valgtTilbehor;
@@ -81,7 +90,7 @@
             
             
             for (let i = 0; i < tilbehor.length; i++){
-                tilbehortxt += +tilbehor[i].tilbehor + " " + tilbehor[i].pris + "kr" + ", ";
+                tilbehortxt += tilbehor[i].tilbehor + " " + tilbehor[i].pris + "kr" + ", ";
                 totalpris += +tilbehor[i].pris;
             }
             
@@ -101,8 +110,9 @@
             for(let i = 0; i < tilbehor.length; i++){
                 kvittering.innerHTML += tilbehor[i].tilbehor + " " + tilbehor[i].pris + "kr<br>";
             }
-                kvittering.innerHTML += "Totalpris = " + totalpris + " " + "kr";
-                kvittering.style.opacity = 1;
+            kvittering.innerHTML += "Totalpris = " + totalpris + " " + "kr";
+            kvittering.style.borderWidth = "5px";
+                
         }
         
     
@@ -110,7 +120,7 @@
         
         
         
-        bestillKnapp.addEventListener("click", bestill);
+        bestillKnapp.addEventListener("click", kvitteringen);
         document.querySelectorAll("input").forEach(function(e){e.addEventListener("click", bestill)});
         
     
